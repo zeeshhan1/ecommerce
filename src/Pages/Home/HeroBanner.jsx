@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./HeroBanner.module.css";
 
 const HERO_IMAGE_URL = "/images/hero-banner.jpg";
@@ -17,7 +18,7 @@ function HeroBanner() {
           </p>
 
           <div className={styles.ctaGroup}>
-            <a href="#categories" className={styles.primaryButton}>
+            <Link to="/shop" className={styles.primaryButton}>
               Shop Now
               <svg
                 width="18"
@@ -33,11 +34,11 @@ function HeroBanner() {
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </a>
+            </Link>
 
-            <a href="#categories" className={styles.secondaryButton}>
+            <Link to="/shop" className={styles.secondaryButton}>
               Explore Categories
-            </a>
+            </Link>
           </div>
         </div>
 

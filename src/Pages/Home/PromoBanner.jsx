@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./PromoBanner.module.css";
 
 function PromoBanner() {
@@ -48,7 +49,7 @@ function PromoBanner() {
               <span className={styles.couponLabel}>Promo Code:</span>
               <code className={styles.couponCode}>AUDIO15</code>
             </div>
-            <a href="#bestsellers" className={styles.primaryBtn}>
+            <Link to="/shop/electronics" className={styles.primaryBtn}>
               <span>Shop Headphones</span>
               <svg
                 width="18"
@@ -64,7 +65,7 @@ function PromoBanner() {
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 

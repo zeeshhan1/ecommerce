@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import styles from "./FeaturedProducts.module.css";
 import { products } from "../../data/products.js";
 
@@ -82,7 +83,7 @@ function FeaturedProducts() {
 
         <div className={styles.headerActions}>
           {/* View All Products Link */}
-          <a href="#shop" className={styles.viewAllLink}>
+          <Link to="/shop" className={styles.viewAllLink}>
             <span>View All Products</span>
             <svg
               className={styles.viewAllArrow}
@@ -99,7 +100,7 @@ function FeaturedProducts() {
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Arrows */}
           <div

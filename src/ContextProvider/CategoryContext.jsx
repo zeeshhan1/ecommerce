@@ -5,16 +5,6 @@ const CategoryContext = createContext({
   setSelectedCategory: () => {},
 });
 
-export const SECONDARY_CATEGORIES = [
-  { id: "all", name: "All", hasIcon: true },
-  { id: "smartphones", name: "Electronics" },
-  { id: "mens-shirts", name: "Fashion" },
-  { id: "kitchen-accessories", name: "Home & Kitchen" },
-  { id: "beauty", name: "Beauty" },
-  { id: "sports-accessories", name: "Sports" },
-  { id: "fragrances", name: "Best Sellers", isHighlight: true },
-];
-
 export function CategoryProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -25,6 +15,7 @@ export function CategoryProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCategory() {
   const context = useContext(CategoryContext);
   if (!context) {

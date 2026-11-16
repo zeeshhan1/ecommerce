@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import AstraLogo from "../Components/AstraLogo.jsx";
-import {
-  useCategory,
-  SECONDARY_CATEGORIES,
-} from "../ContextProvider/CategoryContext.jsx";
+import { useCategory } from "../ContextProvider/CategoryContext.jsx";
+import { SECONDARY_CATEGORIES } from "../data/categories.js";
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -96,17 +95,33 @@ function Navbar() {
     setAccountMenuOpen((prev) => !prev);
   };
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/shop?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      navigate("/shop");
+    }
   };
 
-  const handleCategoryClick = (categoryId) => {
-    setSelectedCategory(categoryId);
-    // Smoothly scroll to the featured products section
-    const section = document.getElementById("featured");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+  const handleCategoryClick = (cat) => {
+    setSelectedCategory(cat.id);
+    if (cat.id === "bestsellers") {
+      if (location.pathname === "/") {
+        const section = document.getElementById("featured");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+      navigate("/shop?idea=best-sellers");
+      return;
     }
+    const targetPath = cat.path || (cat.slug ? `/shop/${cat.slug}` : "/shop");
+    navigate(targetPath);
   };
 
   return (
@@ -118,12 +133,12 @@ function Navbar() {
         <div className={styles.navContainer}>
           {/* Brand / Logo Area */}
           <div className={styles.navBrandArea}>
-            <a href="/" className={styles.logo} aria-label="Astra Home">
+            <Link to="/" className={styles.logo} aria-label="Astra Home">
               <div className={styles.logoIcon} aria-hidden="true">
                 <AstraLogo size={21} />
               </div>
               <span className={styles.logoText}>Astra</span>
-            </a>
+            </Link>
           </div>
 
           {/* Search Bar — Positioned in the MIDDLE (No search icon on left) */}
@@ -441,23 +456,40 @@ function Navbar() {
             <div className={styles.mobileSection}>
               <h4 className={styles.mobileSectionHeading}>Browse Categories</h4>
               <ul className={styles.mobileLinks}>
-                {SECONDARY_CATEGORIES.map((cat) => (
-                  <li key={cat.id}>
-                    <button
-                      type="button"
-                      className={`${styles.mobileCategoryBtn} ${selectedCategory === cat.id ? styles.mobileCategoryBtnActive : ""}`}
-                      onClick={() => {
-                        handleCategoryClick(cat.id);
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      <span>{cat.name}</span>
-                      {selectedCategory === cat.id && (
-                        <span className={styles.activeCheck}>✓</span>
-                      )}
-                    </button>
-                  </li>
-                ))}
+                {SECONDARY_CATEGORIES.map((cat) => {
+                  const currentSlug = location.pathname.startsWith("/shop/")
+                    ? location.pathname
+                        .replace("/shop/", "")
+                        .split("?")[0]
+                        .split("/")[0]
+                    : null;
+                  const isShopAll = location.pathname === "/shop";
+                  const isActive = currentSlug
+                    ? currentSlug === cat.slug
+                    : isShopAll
+                    ? cat.id === "all"
+                    : selectedCategory === cat.id;
+
+                  return (
+                    <li key={cat.id}>
+                      <button
+                        type="button"
+                        className={`${styles.mobileCategoryBtn} ${
+                          isActive ? styles.mobileCategoryBtnActive : ""
+                        }`}
+                        onClick={() => {
+                          handleCategoryClick(cat);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        <span>{cat.name}</span>
+                        {isActive && (
+                          <span className={styles.activeCheck}>✓</span>
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -551,14 +583,28 @@ function Navbar() {
         <div className={styles.secondaryContainer}>
           <ul className={styles.secondaryList} role="menubar">
             {SECONDARY_CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat.id;
+              const currentSlug = location.pathname.startsWith("/shop/")
+                ? location.pathname
+                    .replace("/shop/", "")
+                    .split("?")[0]
+                    .split("/")[0]
+                : null;
+              const isShopAll = location.pathname === "/shop";
+              const isActive = currentSlug
+                ? currentSlug === cat.slug
+                : isShopAll
+                ? cat.id === "all"
+                : selectedCategory === cat.id;
+
               return (
                 <li key={cat.id} role="none">
                   <button
                     type="button"
                     role="menuitem"
-                    className={`${styles.categoryBtn} ${isActive ? styles.categoryBtnActive : ""} ${cat.isHighlight ? styles.categoryBtnHighlight : ""}`}
-                    onClick={() => handleCategoryClick(cat.id)}
+                    className={`${styles.categoryBtn} ${
+                      isActive ? styles.categoryBtnActive : ""
+                    } ${cat.isHighlight ? styles.categoryBtnHighlight : ""}`}
+                    onClick={() => handleCategoryClick(cat)}
                     aria-current={isActive ? "page" : undefined}
                     aria-label={`Filter by ${cat.name}`}
                   >

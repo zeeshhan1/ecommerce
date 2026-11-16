@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./ShopByCategory.module.css";
 
 const CATEGORIES = [
@@ -63,9 +64,9 @@ function ShopByCategory() {
 
       <div className={styles.categoryGrid} role="list">
         {CATEGORIES.map((category) => (
-          <a
+          <Link
             key={category.id}
-            href={`#shop-${category.slug}`}
+            to={`/shop/${category.slug}`}
             className={styles.categoryCard}
             aria-label={`Shop ${category.name}`}
             data-category={category.slug}
@@ -84,7 +85,7 @@ function ShopByCategory() {
                 loading="lazy"
               />
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </section>
