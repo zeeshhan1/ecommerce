@@ -1,0 +1,18 @@
+.ResultsToolBar {
+  background-color: #ffffff;
+}
+.ToolBarCat {
+  font-weight: bolder;
+  color: #ea0000;
+}
+.toolBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12);
+}
+.dropdown {
+  border-radius: 10px;
+  margin-left: 5px;
+}
