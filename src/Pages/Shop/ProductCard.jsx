@@ -13,9 +13,9 @@ function ProductCard({ product }) {
       </div>
 
       <div className={styles.productDetails}>
-        {product.brand && (
+        {/* {product.brand && (
           <p className={styles.productBrand}>{product.brand}</p>
-        )}
+        )} */}
         <h3 className={styles.productName}>{product.name}</h3>
         {product.rating && (
           <p className={styles.productRating}>
@@ -34,12 +34,10 @@ function ProductCard({ product }) {
             <span className={styles.discount}>{product.discount}% off</span>
           )}
         </div>
+        <button className={styles.addToCartButton}>Add to Cart</button>
       </div>
-
-      <button className={styles.addToCartButton}>Add to Cart</button>
     </article>
   );
 }
 
 export default ProductCard;
-  

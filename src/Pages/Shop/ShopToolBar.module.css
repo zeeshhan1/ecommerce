@@ -1,4 +1,4 @@
-.ResultsToolBar {
+.toolBar {
   background-color: #ffffff;
 }
 .ToolBarCat {
@@ -8,7 +8,7 @@
 .toolBar {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 10px;
   align-items: center;
   border-bottom: 1px solid #e5e7eb;
   box-shadow: none;

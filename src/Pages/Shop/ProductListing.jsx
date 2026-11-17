@@ -1,8 +1,7 @@
 import styles from "./ProductListing.module.css";
-import products from "../../data/products.js";
 import ProductCard from "./ProductCard";
 
-function ProductListing() {
+function ProductListing({ productData }) {
   return (
     <div className={styles.ProductListing}>
       <div className={styles.mainHeader}>
@@ -14,7 +13,7 @@ function ProductListing() {
       </div>
       <div className={styles.ProductListingMain}>
         <div className={styles.productGrid}>
-          {products.map((product) => (
+          {productData.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

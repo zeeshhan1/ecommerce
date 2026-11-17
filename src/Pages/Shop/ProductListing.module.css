@@ -1,7 +1,5 @@
 .mainHeader {
   margin-top: 20px;
-}
-.mainHeader p {
   font-size: 14px;
 }
 .ProductListingMain {
@@ -10,8 +8,7 @@
 }
 
 .productGrid {
+  margin-top: 5px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  width: 100%;
+  gap: 10px;
 }
