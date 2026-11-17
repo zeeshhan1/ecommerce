@@ -7,7 +7,6 @@
   margin: 0;
   padding: 0;
   background-color: var(--nav-bg, #0b1324);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
@@ -108,7 +107,9 @@
   border: 1.5px solid #e2e8f0;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .searchContainer:focus-within {
@@ -147,7 +148,9 @@
   font-weight: 600;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
 }
 
 .searchButton:hover {
@@ -190,7 +193,9 @@
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
   user-select: none;
 }
 
@@ -252,7 +257,9 @@
   width: 440px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
   padding: 22px;
   z-index: 500;
   animation: popoverFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -324,7 +331,9 @@
   text-align: center;
   text-decoration: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
 }
 
 .signInButton:hover {
@@ -389,7 +398,9 @@
   padding: 6px 8px;
   border-radius: 6px;
   text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .popoverLink:hover,
@@ -478,7 +489,9 @@
   height: 2px;
   background-color: #ffffff;
   border-radius: 2px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .barOpen1 {
@@ -548,7 +561,10 @@
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
   user-select: none;
 }
 

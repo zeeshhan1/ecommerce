@@ -1,12 +1,9 @@
 import styles from "./FilterSidebar.module.css";
-import { useParams } from "react-router-dom";
 
 function FilterSidebar() {
-  const { slug } = useParams();
-  console.log(slug);
   return (
     <aside className={styles.sidebar}>
-      <section className={styles.PopularShoppingIdeas}>
+      <section className={styles.filterSection}>
         <h4>Popluar Shopping Ideas</h4>
         <ul>
           <li>Desktops</li>
@@ -15,7 +12,7 @@ function FilterSidebar() {
         </ul>
       </section>
 
-      <section className={styles.DealsDiscounts}>
+      <section className={styles.filterSection}>
         <h4>Deals &amp; Discounts</h4>
         <ul>
           <li>All Discounts</li>
@@ -24,7 +21,7 @@ function FilterSidebar() {
         </ul>
       </section>
 
-      <section className={styles.CustomerReviews}>
+      <section className={styles.filterSection}>
         <h4>Customer Review</h4>
         {[4].map((rating) => (
           <label key={rating}>
@@ -33,7 +30,7 @@ function FilterSidebar() {
         ))}
       </section>
 
-      <section className={styles.Brands}>
+      <section className={styles.filterSection}>
         <h4>Brands</h4>
         <ul>
           <li>Apple</li>
@@ -42,7 +39,7 @@ function FilterSidebar() {
         </ul>
       </section>
 
-      <section className={styles.OurBrand}>
+      <section className={styles.filterSection}>
         <h4>From our Brands</h4>
         <label>
           <input type="checkbox" />
@@ -50,12 +47,27 @@ function FilterSidebar() {
         </label>
       </section>
 
-      <section className={styles.Condition}>
+      <section className={styles.filterSection}>
         <h4>Condition</h4>
         <ul>
-          <li>Used</li>
-          <li>Renewal</li>
-          <li>New</li>
+          <li>
+            <label>
+              <input type="checkbox" />
+              New
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" />
+              Renewed
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" />
+              Used
+            </label>
+          </li>
         </ul>
       </section>
     </aside>

@@ -19,13 +19,16 @@ function ProductCard({ product }) {
         <h3 className={styles.productName}>{product.name}</h3>
         {product.rating && (
           <p className={styles.productRating}>
-            {"★".repeat(Math.round(product.rating))} ({product.reviewsCount || 0})
+            {"★".repeat(Math.round(product.rating))} (
+            {product.reviewsCount || 0})
           </p>
         )}
         <div className={styles.priceContainer}>
           <span className={styles.currentPrice}>₹{product.price}</span>
           {product.originalPrice && (
-            <span className={styles.originalPrice}>₹{product.originalPrice}</span>
+            <span className={styles.originalPrice}>
+              ₹{product.originalPrice}
+            </span>
           )}
           {product.discount && (
             <span className={styles.discount}>{product.discount}% off</span>
@@ -39,3 +42,4 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
+  

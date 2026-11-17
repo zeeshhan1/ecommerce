@@ -10,7 +10,8 @@
   justify-content: space-between;
   padding: 15px;
   align-items: center;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: none;
 }
 .dropdown {
   border-radius: 10px;
