@@ -11,7 +11,7 @@ export function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:categorySlug" element={<Shop />} />
           </Routes>
         </Layout>
       </CategoryProvider>

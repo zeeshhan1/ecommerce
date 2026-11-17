@@ -175,7 +175,7 @@ function FeaturedProducts() {
                 <img
                   className={styles.productImage}
                   src={product.image}
-                  alt={product.name}
+                  alt={product.name}  
                   loading="lazy"
                 />
               </div>

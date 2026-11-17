@@ -1,14 +1,14 @@
 import styles from "./FilterSidebar.module.css";
 
-function FilterSidebar() {
+function FilterSidebar({ data }) {
   return (
     <aside className={styles.sidebar}>
       <section className={styles.filterSection}>
         <h4>Popluar Shopping Ideas</h4>
         <ul>
-          <li>Desktops</li>
-          <li>Laptop computers</li>
-          <li>Printers</li>
+          {data.shoppingIdeas.map((idea) => (
+            <li key={idea}>{idea}</li>
+          ))}
         </ul>
       </section>
 
@@ -33,9 +33,12 @@ function FilterSidebar() {
       <section className={styles.filterSection}>
         <h4>Brands</h4>
         <ul>
-          <li>Apple</li>
-          <li>Samsung</li>
-          <li>Rgx</li>
+          {data.brands.map((brand) => (
+            <li key={brand}>
+              <input type="checkbox" />
+              {brand}
+            </li>
+          ))}
         </ul>
       </section>
 
