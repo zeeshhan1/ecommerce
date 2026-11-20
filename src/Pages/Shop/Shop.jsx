@@ -22,19 +22,42 @@ function Shop() {
     (product) => product.category.toLowerCase() === categorySlug,
   );
 
+  // sorting logic
+  const [sortBy, setSortBy] = useState("featured");
+  const sortProducts = (products, sortBy) => {
+    switch (sortBy) {
+      case "featured":
+        return [...products].sort(
+          (a, b) => Number(b.featured) - Number(a.featured),
+        );
+      case "low-high":
+        return [...products].sort((a, b) => a.price - b.price);
+      case "high-low":
+        return [...products].sort((a, b) => b.price - a.price);
+      case "avg":
+        return [...products].sort((a, b) => b.rating - a.rating);
+      default:
+        return products;
+    }
+  };
+  const handleSortChange = (value) => {
+    setSortBy(value);
+    setCurrentPage(1);
+  };
+  const sortedProducts = sortProducts(productData, sortBy);
+
   // pagination logic
   const productsPerPage = 2;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(productData.length / productsPerPage);
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
-  const currentProducts = productData.slice(startIndex, endIndex);
-
+  const currentProducts = sortedProducts.slice(startIndex, endIndex);
   return (
     <>
-      <ShopToolBar />
+      <ShopToolBar sortBy={sortBy} setSortBy={handleSortChange} />
       <div className={styles.shopContent}>
         <FilterSidebar data={data} />
         <ProductListing currentProducts={currentProducts} />
